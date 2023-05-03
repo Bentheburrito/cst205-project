@@ -29,7 +29,7 @@ CREATE TABLE questions (
 	option_1 varchar(250),
 	option_2 varchar(250),
 	option_3 varchar(250),
-	answer varchar(250),
+	answer integer,
 	image_url varchar(500),
 	foreign key (quiz_id) references quizzes(id)
 );
