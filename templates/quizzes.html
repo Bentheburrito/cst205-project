@@ -33,5 +33,16 @@
 <h2>Quiz Title 2</h2>
 <img src="pic_trulli.jpg" alt="Trulli" width="500" height="333">
 
+
+{% for subject_id in quizzes_by_subject %}
+	{% set quizzes = quizzes_by_subject[subject_id] %}
+	<h1>{{ quizzes[0][2] }}</h1>
+
+	{% for (quiz_id, quiz_name, _, _) in quizzes %}
+		<h2>{{ quiz_name }}</h2>
+		<p>quiz ID = {{quiz_id}}</p>
+	{% endfor %}
+{% endfor %}
+
 </body>
 </html>

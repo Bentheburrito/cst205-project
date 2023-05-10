@@ -15,6 +15,16 @@
 
 <h1>Place Quiz information here</h1>
 
+{% for (id, quiz_id, question_text, opt1, opt2, opt3, answer_num, image_url) in questions %}
+	<p>{{ question_text }}</p>
+	<ul>
+		<li>{{opt1}}</li>
+		<li>{{opt2}}</li>
+		<li>{{opt3}}</li>
+	</ul>
+{% endfor %}
+
+
 
 <button class="Submit"></button>
 
