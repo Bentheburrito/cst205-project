@@ -1,3 +1,12 @@
+"""
+CST 205 Spring 2023
+A Python + Flask website to host quizzes
+
+Authors:
+Yuki Okamoto
+Ben Woodward
+Elijah Garza
+"""
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap5
 import mysql.connector
