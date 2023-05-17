@@ -3,9 +3,9 @@ CST 205 Spring 2023
 A Python + Flask website to host quizzes
 
 Authors:
-Yuki Okamoto
-Ben Woodward
-Elijah Garza
+Yuki Okamoto: Backend and Frontend
+Ben Woodward: Backend and Database
+Elijah Garza: Frontend
 """
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap5
