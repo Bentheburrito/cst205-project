@@ -1,32 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-    <ul>
-        <li><a href="#Home">Home</a></li>
-        <li><a href="#Quizzes">Quizzes</a></li>
-        <li><a href="#Links">Links</a></li>
-    </ul>
-    
-<title>Quiz Title</title>
-</head>
-<body>
-    
-
-<h1>Place Quiz information here</h1>
-
-{% for (id, quiz_id, question_text, opt1, opt2, opt3, answer_num, image_url) in questions %}
-	<p>{{ question_text }}</p>
-	<ul>
-		<li>{{opt1}}</li>
-		<li>{{opt2}}</li>
-		<li>{{opt3}}</li>
-	</ul>
-{% endfor %}
-
-
-
-<button class="Submit"></button>
-
-</body>
+  <head>
+    <title>Quiz Title</title>
+    {{ bootstrap.load_css() }} {% import 'header.html' as header %}
+  </head>
+  <body>
+    {{ header.header('QUIZ') }}
+    <form class="bg-white px-4" action="/submit_quiz" method="post">
+      {% for (id, quiz_id, question_text, opt1, opt2, opt3, answer) in questions
+      %}
+      <div class="d-flex justify-content-center">
+        <div class="row col-5 container">
+          <h4 class="fw-bold text-center mt-3"></h4>
+          <p class="fw-bold">{{question_text}}</p>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="question_{{id}}"
+              id="radioExample1_{{id}}"
+              value="1"
+            />
+            <label class="form-check-label" for="radioExample1_{{id}}">
+              {{opt1}}
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="question_{{id}}"
+              id="radioExample2_{{id}}"
+              value="2"
+            />
+            <label class="form-check-label" for="radioExample2_{{id}}">
+              {{opt2}}
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="question_{{id}}"
+              id="radioExample3_{{id}}"
+              value="3"
+            />
+            <label class="form-check-label" for="radioExample3_{{id}}">
+              {{opt3}}
+            </label>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </body>
 </html>

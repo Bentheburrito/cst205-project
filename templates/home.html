@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Home Page</title>
+    {{ bootstrap.load_css() }} {% import 'header.html' as header %}
+  </head>
+  <body>
+    {{ header.header('WELCOME TO STUDY') }}
 
-    <ul>
-        <li><a href="#Home">Home</a></li>
-        <li><a href="#Quizzes">Quizzes</a></li>
-        <li><a href="#Links">Links</a></li>
-    </ul>
-    
-<title>Welcome to Home Page</title>
-</head>
-<body>
-
-<h1 class="">Welcome to the Study</h1>
-<button class="Submit"></button>
-
-</body>
+    <div class="container mt-5">
+      <h1 class="mt-2">Description</h1>
+      <h2 class="d-flex">
+        <a href="/quizzes">Quiz Page</a>
+        <div>: You can take quizzes that align with your interests.</div>
+      </h2>
+      <h2 class="d-flex">
+        <a href="/links">Link Page</a>
+        <div>
+          : Here, you can study the material that will help you prepare for the
+          quiz.
+        </div>
+      </h2>
+    </div>
+  </body>
 </html>

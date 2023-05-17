@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz Results</title>
+    {{ bootstrap.load_css() }} {% import 'header.html' as header %}
+  </head>
+  <body>
+    {{ header.header('QUIZ RESULTS') }}
+
+    <h2 class="text-center my-4">
+      Your score:
+      <span class="text-primary font-weight-bold">{{ score }}</span>/100
+    </h2>
+
+    {% for result in results %}
+    <div class="d-flex justify-content-center">
+      <div class="row col-5 container">
+        <!-- show answer -->
+        {% if result.your_answer == result.opt1 %}
+        <p>Your answer: {{ result.opt1 }}</p>
+        {% elif result.your_answer == result.opt2 %}
+        <p>Your answer: {{ result.opt2 }}</p>
+        {% elif result.your_answer == result.opt3 %}
+        <p>Your answer: {{ result.opt3 }}</p>
+        {% endif %}
+
+        <p class="fw-bold">{{ result.question }}</p>
+
+        {% if result.is_correct %}
+        <p class="text-success">You answered correctly.</p>
+        {% else %}
+        <p>Your answer: {{ result.your_answer }}</p>
+
+        {% if result.correct_answer == result.opt1 %}
+        <p>Correct answer: {{ result.opt1 }}</p>
+        {% elif result.correct_answer == result.opt2 %}
+        <p>Correct answer: {{ result.opt2 }}</p>
+        {% elif result.correct_answer == result.opt3 %}
+        <p>Correct answer: {{ result.opt3 }}</p>
+        {% endif %}
+
+        <p class="text-danger">You answered incorrectly.</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </body>
+</html>
