@@ -33,3 +33,6 @@ GitHub: https://github.com/Bentheburrito/cst205-project
 <img width="1425" alt="Screenshot 2023-05-17 at 14 51 06" src="https://github.com/Bentheburrito/cst205-project/assets/75482698/08d8648b-3b60-4219-81ec-02558578e21f">
 **Links page**
 <img width="1426" alt="Screenshot 2023-05-17 at 14 50 14" src="https://github.com/Bentheburrito/cst205-project/assets/75482698/78a7089a-a5a5-48ef-8684-15632f35cb58">
+
+### Future work
+1. Add more subjects and quizzes.
