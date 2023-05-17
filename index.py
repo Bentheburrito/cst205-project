@@ -7,8 +7,7 @@ Yuki Okamoto
 Ben Woodward
 Elijah Garza
 """
-
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap5
 import mysql.connector
 import os
@@ -31,7 +30,14 @@ bootstrap = Bootstrap5(app)
 
 @app.route('/')
 def hello():
-  return 'Hello World'
+  return render_template('home.html')
+
+@app.route('/links')
+def links():
+  sql.execute("SELECT * FROM links")
+  links = sql.fetchall()
+  print(links)
+  return render_template('links.html', links=links)
 
 @app.route('/quizzes')
 def quiz_summary():
@@ -56,9 +62,38 @@ def quiz_summary():
   
   return render_template('quizzes.html', quizzes_by_subject=quizzes_by_subject)
 
-@app.route('/quiz/<id>')
-def get_quiz(id):
-  sql.execute(f"SELECT * FROM questions WHERE quiz_id = {id}")
+@app.route('/quiz/<int:quiz_id>')
+def get_quiz(quiz_id):
+  sql.execute(f"SELECT * FROM questions WHERE quiz_id = {quiz_id}")
   questions = sql.fetchall()
 
   return render_template('quiz-page.html', questions=questions)
+
+@app.route('/submit_quiz', methods=['POST'])
+def submit_quiz():
+    user_answers = request.form
+    score = 0
+    results = []
+
+    for question_id, user_answer in user_answers.items():
+        # Extract the actual question id from the form input name
+        question_id = int(question_id.split('_')[1])
+        # Fetch the correct answer and question text from the database
+        sql.execute(f"SELECT question_text, answer, option_1, option_2, option_3 FROM questions WHERE id = {question_id}")
+        question_text, correct_answer, option_1, option_2, option_3 = sql.fetchone()
+        
+        result = {
+            "question": question_text,
+            "your_answer": user_answer,
+            "correct_answer": correct_answer,
+            "opt1": option_1,
+            "opt2": option_2,
+            "opt3": option_3,
+            "is_correct": int(user_answer) == correct_answer
+        }
+        results.append(result)
+
+        if result["is_correct"]:
+            score += 10
+
+    return render_template('quiz_results.html', score=score, results=results)

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {{ bootstrap.load_css() }} {% import 'header.html' as header %}
+    <title>Links</title>
+  </head>
+  <body>
+    {{ header.header('Links') }}
+    <ul class="list-unstyled container mt-4">
+      {% for (id, quiz_id, name, url) in links %}
+      <li class="link-light"><a href="{{url}}" target="_blank">{{name}}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
